@@ -1,4 +1,7 @@
-package com.pearl.tracker.products;
+/*
+package com.pearl.tracker.model;
+
+import com.pearl.tracker.service.ProductService;
 
 import java.util.List;
 
@@ -25,3 +28,4 @@ public class PopularProducts {
 		return products;
 	}
 }
+*/
