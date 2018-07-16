@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 @Named
 @ApplicationScoped
@@ -15,18 +16,17 @@ public class ProductController {
     @Inject
     ProductService productService;
 
-  private Product product;
+    private Product product;
+    private List<Product> productList;
 
-    public String addProduct(){
-        System.out.println(product.toString());
-        System.out.println("*************************************************");
-        productService.addProduct(product);
+    public String addProduct() {
 
-        return "/index.xhtml?faces-redirect=true";
+
+        return productService.addProduct(product);
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         product = new Product();
     }
 
@@ -36,5 +36,9 @@ public class ProductController {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public List<Product> getProductList() {
+        return productService.getProducts();
     }
 }

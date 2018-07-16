@@ -8,21 +8,18 @@
 
 <f:loadBundle basename="application" var="msg"/>
 
-<head>
+<h:head>
     <title><h:outputText value="#{msg.welcomeTitle}"/></title>
     <h:outputStylesheet library="tracker" name="css/default.css"/>
-</head>
+</h:head>
 
-<body>
-<!--<h3><h:outputText value="#{msg.welcomeHeading}"/></h3>-->
-<!--<p><h:outputText value="#{msg.welcomeMessage}"/></p>-->
+<h:body>
+
 
 <h:form>
 
-    <h:link value="Add memebers" outcome="add_members.xhtml"></h:link>
-    <h:link value="Product list" outcome="product-list.xhtml"></h:link>
     <p:panelGrid>
-        <p:commandLink value="ADD MEMBERS" action="add_members.xhtml"/>
+        <p:commandButton value="ADD MEMBERS" action="add_members.xhtml"/>
         <p:commandButton value="ADD PRODUCTS" action="add-products.xhtml"/>
     </p:panelGrid>
 
@@ -30,12 +27,30 @@
 
 </h:form>
 
-<ui:composition template="/page-template.xhtml">
+<p:dataTable var="product" value="#{productController.productList}">
+    <p:column headerText="Id">
+        <h:outputText value="#{product.id}"/>
+    </p:column>
+
+    <p:column headerText="name">
+        <h:outputText value="#{product.name}"/>
+    </p:column>
+
+    <p:column headerText="price">
+        <h:outputText value="#{product.price}"/>
+    </p:column>
+
+    <p:column headerText="description">
+        <h:outputText value="#{product.description}"/>
+    </p:column>
+</p:dataTable>
+
+<!--<ui:composition template="/page-template.xhtml">
     <ui:param name="pageTitle" value="Popular Products"></ui:param>
     <ui:define name="panel-main">
         <section>
             <h1>Popular Products</h1>
-            <!--   <h:form>
+            &lt;!&ndash;   <h:form>
                    <ui:repeat var="product" value="#{popularProducts.products}">
                        <ui:decorate template="/product-summary.xhtml">
                            <ui:param name="product" value="#{product}"/>
@@ -45,11 +60,11 @@
                        </ui:decorate>
 
                    </ui:repeat>
-               </h:form>-->
+               </h:form>&ndash;&gt;
         </section>
     </ui:define>
-</ui:composition>
+</ui:composition>-->
 
 
-</body>
+</h:body>
 </html>

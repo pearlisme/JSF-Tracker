@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 import lombok.Data;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,10 +16,11 @@ import javax.validation.constraints.Size;
 @Data
 @Named
 @Table(name = "PRODUCT")
+@SessionScoped
 public class Product implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @NotNull
     @Column(name = "ID")
     private long id;
