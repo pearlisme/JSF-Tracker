@@ -16,24 +16,33 @@
 <h:body class="color">
     <!-- <h3><h:outputText value="#{msg.welcomeHeading}"/></h3>
      <p><h:outputText value="#{msg.welcomeMessage}"/></p>-->
-
+<div align="center">
     <h:form>
         <p:panel id="panel" header="Form" style="margin-bottom:10px;" text-align="center">
 
-            <p:messages id="messages"/>
+            <p:messages tyle="color:red;margin:8px;" />
             <h:panelGrid columns="2" cellpadding="5">
 
                 <h:outputLabel for="name" value="name"/>
-                <p:inputText id="name" value="#{productController.product.name}" required="true"/>
+                <p:inputText id="name" value="#{productController.product.name}" required="true">
+                    <f:validateLength maximum="50" minimum="3" for="name" />
+                </p:inputText>
 
                 <h:outputLabel for="description" value="description"/>
-                <p:inputText id="description" value="#{productController.product.description}" required="true"/>
+                <p:inputText id="description" value="#{productController.product.description}" required="true">
+                   <!-- <f:validateRegex pattern="[a-b]{5}" for="description" />-->
+                </p:inputText>
+
+               <!-- <p:outputLabel for="button" value="Button:" />
+                <p:barcode id="button" value="#{productController}" showOn="button" />-->
 
                 <h:outputLabel for="price" value="price"/>
-                <p:inputText id="price" value="#{productController.product.price}" required="true"/>
+                <p:inputText id="price" value="#{productController.product.price}" required="true">
+                    <f:validateDoubleRange  minimum="1.0" maximum="99999.0" />
+                </p:inputText>
 
                 <h:outputLabel for="imageName" value="imageName:"/>
-                <p:inputText id="imageName" value="#{productController.product.imageName}" required="true"/>
+                <p:inputText id="imageName" value="#{productController.product.imageName}" required="false"/>
 
             </h:panelGrid>
             <p:commandButton value="Submit" update="panel" actionListener="#{productController.addProduct}"/>
@@ -42,7 +51,7 @@
 
 
     </h:form>
-
+</div>
     <h:link value="Main Page" outcome="index.xhtml" />
 </h:body>
 </html>

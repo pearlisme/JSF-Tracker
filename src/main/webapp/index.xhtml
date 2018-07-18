@@ -15,55 +15,65 @@
 
 <h:body>
 
+    <div align="center">
+        <h:form>
+           <!-- <h:inputText id="inputText" value="#{productController.product.name}"/>
+            <h:commandButton id="demo" value="show">
 
-<h:form>
+                <f:ajax execute="inputText" render="outputText"/>
+            </h:commandButton>
+            <h:outputText id="outputText" value="#{productController.product.name}"/>
+-->
+            <p:panelGrid>
+                <p:commandButton value="ADD MEMBERS" action="add_members.xhtml"/>
+                <p:commandButton value="ADD PRODUCTS" action="add-products.xhtml"/>
+            </p:panelGrid>
 
-    <p:panelGrid>
-        <p:commandButton value="ADD MEMBERS" action="add_members.xhtml"/>
-        <p:commandButton value="ADD PRODUCTS" action="add-products.xhtml"/>
-    </p:panelGrid>
 
+        </h:form>
+    </div>
 
+    <hr />
 
-</h:form>
+    <div align="center">
 
-<p:dataTable var="product" value="#{productController.productList}">
-    <p:column headerText="Id">
-        <h:outputText value="#{product.id}"/>
-    </p:column>
+    <p:dataTable var="product" value="#{productController.productList}">
+        <p:column headerText="Id">
+            <h:outputText value="#{product.id}"/>
+        </p:column>
 
-    <p:column headerText="name">
-        <h:outputText value="#{product.name}"/>
-    </p:column>
+        <p:column headerText="name">
+            <h:outputText value="#{product.name}"/>
+        </p:column>
 
-    <p:column headerText="price">
-        <h:outputText value="#{product.price}"/>
-    </p:column>
+        <p:column headerText="price">
+            <h:outputText value="#{product.price}"/>
+        </p:column>
 
-    <p:column headerText="description">
-        <h:outputText value="#{product.description}"/>
-    </p:column>
-</p:dataTable>
+        <p:column headerText="description">
+            <h:outputText value="#{product.description}"/>
+        </p:column>
+    </p:dataTable>
+    </div>
+    <!--<ui:composition template="/page-template.xhtml">
+        <ui:param name="pageTitle" value="Popular Products"></ui:param>
+        <ui:define name="panel-main">
+            <section>
+                <h1>Popular Products</h1>
+                &lt;!&ndash;   <h:form>
+                       <ui:repeat var="product" value="#{popularProducts.products}">
+                           <ui:decorate template="/product-summary.xhtml">
+                               <ui:param name="product" value="#{product}"/>
+                               <ui:define name="product-description">
+                                   <p>#{product.description}</p>
+                               </ui:define>
+                           </ui:decorate>
 
-<!--<ui:composition template="/page-template.xhtml">
-    <ui:param name="pageTitle" value="Popular Products"></ui:param>
-    <ui:define name="panel-main">
-        <section>
-            <h1>Popular Products</h1>
-            &lt;!&ndash;   <h:form>
-                   <ui:repeat var="product" value="#{popularProducts.products}">
-                       <ui:decorate template="/product-summary.xhtml">
-                           <ui:param name="product" value="#{product}"/>
-                           <ui:define name="product-description">
-                               <p>#{product.description}</p>
-                           </ui:define>
-                       </ui:decorate>
-
-                   </ui:repeat>
-               </h:form>&ndash;&gt;
-        </section>
-    </ui:define>
-</ui:composition>-->
+                       </ui:repeat>
+                   </h:form>&ndash;&gt;
+            </section>
+        </ui:define>
+    </ui:composition>-->
 
 
 </h:body>

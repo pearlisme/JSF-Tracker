@@ -52,17 +52,17 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>6.0.4</version>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.197</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.flywaydb/flyway-core &ndash;&gt;
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>3.0</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
@@ -78,8 +78,31 @@
                         <target>1.8</target>
                     </configuration>
                 </plugin>
-
-            </plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <configuration>
+                        <downloadSources>true</downloadSources>
+                        <downloadJavadocs>true</downloadJavadocs>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.flywaydb</groupId>
+                    <artifactId>flyway-maven-plugin</artifactId>
+                    <version>5.1.4</version>
+                    <configuration>
+                        <url>jdbc:h2:file:~/tracker</url>
+                        <user>sa</user>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.h2database</groupId>
+                            <artifactId>h2</artifactId>
+                            <version>1.4.191</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+          </plugins>
         </pluginManagement>
     </build>
 </project>

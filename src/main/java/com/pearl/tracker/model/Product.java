@@ -2,6 +2,7 @@ package com.pearl.tracker.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -17,13 +18,19 @@ import javax.validation.constraints.Size;
 @Named
 @Table(name = "PRODUCT")
 @SessionScoped
+@NamedQueries({
+    @NamedQuery(name = "product.findAll",query = "select p from Product p"),
+    @NamedQuery(name = "product.findByProductName",query = "select p from Product p where p.name = :productName"),
+    @NamedQuery(name = "product.findByProductId",query = "select p from Product p where p.skuId = :productId")
+})
+@NamedQuery(name = "findProductByName", query = "select p from Product p where p.name like '%:productName%'")
 public class Product implements Serializable {
 
     @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @NotNull
-    @Column(name = "ID")
-    private long id;
+    @Column(name = "SKU_ID")
+    private long skuId;
 
     @NotNull
     @Size(min = 0, max = 50)
@@ -39,15 +46,20 @@ public class Product implements Serializable {
     @Column(name = "IMAGE_NAME")
     private String imageName;
 
+    @Column(name = "MODIFIED_DATE")
+    @Temporal(TemporalType.DATE)
+    private Date modifiedDate;
+
     public Product() {
     }
 
-    public Product(long id, String name, String description, BigDecimal price, String imageName) {
-        this.id = id;
+    public Product(long skuId, String name, String description, BigDecimal price, String imageName,Date modifiedDate) {
+        this.skuId = skuId;
         this.name = name;
         this.description = description;
         this.price = price;
         this.imageName = imageName;
+        this.modifiedDate = modifiedDate;
     }
 
 

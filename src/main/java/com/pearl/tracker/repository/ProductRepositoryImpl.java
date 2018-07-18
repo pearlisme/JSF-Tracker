@@ -2,6 +2,7 @@ package com.pearl.tracker.repository;
 
 import com.pearl.tracker.model.Product;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -17,14 +18,27 @@ import java.util.List;
 @NamedQueries({
 
 })
-public class ProductRepositoryImpl implements ProductRepository , Serializable {
+public class ProductRepositoryImpl implements ProductRepository, Serializable {
 
     /*  @PersistenceContext(unitName = "myH2PU")
       private EntityManager em;
   */
+
+    private static final String query = "select p from Product p where p.name = :productName";
+
     EntityManagerFactory emf;
     EntityManager em;
 
+    List<Product> productList = null;
+
+
+    @PostConstruct
+    public void init(){
+
+        TypedQuery<Product> q = em.createQuery(query,Product.class);
+
+        emf.addNamedQuery("product.findbyProductNameD",q);
+    }
 
     public EntityManager createEM() {
 
@@ -36,7 +50,7 @@ public class ProductRepositoryImpl implements ProductRepository , Serializable {
     @Override
     public String addProduct(Product product) {
 
-        createEM();
+        /*createEM();
 
         if (!em.getTransaction().isActive()) {
             em.getTransaction().begin();
@@ -46,26 +60,42 @@ public class ProductRepositoryImpl implements ProductRepository , Serializable {
         em.getTransaction().commit();
         em.close();
         emf.close();
-        System.out.println("Success full Persist");
+        System.out.println("Success full Persist");*/
 
+
+        productList.add(product);
         return "success";
     }
 
     public List<Product> getProducts() {
 
+        /*List<Product> products = null;
         createEM();
 
         if (!em.getTransaction().isActive()) {
             em.getTransaction().begin();
         }
-        TypedQuery query = em.createQuery("select s from Product s", Product.class);
-        query.setMaxResults(10);
-        List<Product> products = query.getResultList();
-        em.getTransaction().commit();
 
-        em.close();
-        emf.close();
+        try {
+            TypedQuery query = em.createQuery("select s from Product s", Product.class);
+            query.setMaxResults(10);
 
-        return products;
+            products = query.getResultList();
+            em.getTransaction().commit();
+//            return products;
+        } catch (NullPointerException e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+            emf.close();
+        }
+*/
+        return productList;
+    }
+
+    public Product findProductByName(String productName) {
+        return em.createNamedQuery("product.findByProductName", Product.class)
+                .setParameter("productName", productName)
+                .getSingleResult();
     }
 }
