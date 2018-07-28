@@ -9,8 +9,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import javax.validation.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Named(value = "productRepository")
 @SessionScoped
@@ -23,6 +26,12 @@ public class ProductRepositoryImpl implements ProductRepository, Serializable {
     /*  @PersistenceContext(unitName = "myH2PU")
       private EntityManager em;
   */
+    @Inject
+    Validator validator;
+
+//    ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
+//    Validator validator = vf.getValidator();
+    Set<ConstraintViolation<Product>> vialations = new HashSet();
 
     private static final String query = "select p from Product p where p.name = :productName";
 
@@ -62,6 +71,12 @@ public class ProductRepositoryImpl implements ProductRepository, Serializable {
         emf.close();
         System.out.println("Success full Persist");*/
 
+
+        vialations = validator.validate(product);
+
+        if (vialations.size() > 0){
+            throw new ConstraintViolationException(vialations);
+        }
 
         productList.add(product);
         return "success";

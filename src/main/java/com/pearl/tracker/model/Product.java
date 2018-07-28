@@ -9,6 +9,7 @@ import lombok.Data;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -47,6 +48,7 @@ public class Product implements Serializable {
     private String imageName;
 
     @Column(name = "MODIFIED_DATE")
+    @Future
     @Temporal(TemporalType.DATE)
     private Date modifiedDate;
 
