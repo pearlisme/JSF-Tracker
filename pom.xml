@@ -57,17 +57,23 @@
             <artifactId>h2</artifactId>
             <version>1.4.197</version>
         </dependency>
-       <!-- <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.197</version>
-        </dependency>
-        &lt;!&ndash; https://mvnrepository.com/artifact/org.flywaydb/flyway-core &ndash;&gt;
         <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>3.0</version>
-        </dependency>-->
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- <dependency>
+             <groupId>com.h2database</groupId>
+             <artifactId>h2</artifactId>
+             <version>1.4.197</version>
+         </dependency>
+         &lt;!&ndash; https://mvnrepository.com/artifact/org.flywaydb/flyway-core &ndash;&gt;
+         <dependency>
+             <groupId>org.flywaydb</groupId>
+             <artifactId>flyway-core</artifactId>
+             <version>3.0</version>
+         </dependency>-->
 
     </dependencies>
 

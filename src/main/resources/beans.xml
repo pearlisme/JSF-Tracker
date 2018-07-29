@@ -1,0 +1,19 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
+       version="1.1" bean-discovery-mode="all">
+    <alternatives>
+        <class></class>
+    </alternatives>
+    <interceptors>
+        <class>com.pearl.tracker.commons.AuditInterceptor</class>
+        <class>com.pearl.tracker.commons.LoggingInterceptor</class>
+        <class>com.pearl.tracker.commons.LifeCheckInterceptor</class>
+        <class>com.pearl.tracker.commons.LoggingDebugInterceptor</class>
+        <class>com.pearl.tracker.commons.LoggerProducers</class>
+    </interceptors>
+    <decorators>
+        <class></class>
+    </decorators>
+
+</beans>

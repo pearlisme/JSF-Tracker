@@ -1,5 +1,6 @@
 package com.pearl.tracker.service;
 
+import com.pearl.tracker.annotations.Loggable;
 import com.pearl.tracker.model.Member;
 import com.pearl.tracker.repository.MemberRepository;
 
@@ -16,6 +17,7 @@ public class MemberServiceImpl implements MemberService ,Serializable {
     MemberRepository memberRepository;
 
     @Override
+    @Loggable
     public Member addMember(Member member) {
 
         memberRepository.addMember(member);

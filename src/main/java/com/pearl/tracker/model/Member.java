@@ -1,14 +1,14 @@
 package com.pearl.tracker.model;
 
+import com.pearl.tracker.annotations.Mobile;
 import lombok.Data;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 @Named
@@ -19,16 +19,24 @@ public class Member {
 
     @Id
     @Column(name = "MEMBER_ID")
+    @NotNull
     private long id;
 
     @Column(name = "MEMBER_NAME")
+    @NotNull
     private String name;
 
     @Column(name = "MEMBER_MOBILE")
+    @Mobile
     private long mobile;
+
+    @Column(name = "MEMBER_EMAIL")
+    @Email
+    private long email;
 
     @Column(name = "MEMBER_DOB")
     @Temporal(TemporalType.DATE)
+    @Past
     private Date dob;
 
     @Column(name = "MEMBER_GENDER")
@@ -39,6 +47,7 @@ public class Member {
 
     @Column(name = "DATE_OF_JOINING")
     @Temporal(TemporalType.DATE)
+    @Future
     private Date dateOfJoing = new Date();
 
     @Column(name = "ACTIVE")

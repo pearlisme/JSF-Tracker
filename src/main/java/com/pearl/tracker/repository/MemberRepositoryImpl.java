@@ -1,10 +1,9 @@
 package com.pearl.tracker.repository;
 
+import com.pearl.tracker.annotations.Loggable;
 import com.pearl.tracker.model.Member;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.enterprise.context.Destroyed;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -12,9 +11,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import java.io.Serializable;
-import java.sql.SQLOutput;
 
 @Named(value = "memberRepository")
 @SessionScoped
@@ -36,6 +33,7 @@ public class MemberRepositoryImpl implements MemberRepository, Serializable {
     }
 */
     @Override
+    @Loggable
     public Member addMember(Member member) {
 
         Member memberValue = entityManager.find(Member.class, member.getId());

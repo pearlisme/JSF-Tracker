@@ -6,8 +6,8 @@ import java.lang.annotation.*;
 
 @Target({ElementType.ANNOTATION_TYPE,ElementType.CONSTRUCTOR,ElementType.FIELD,ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Documented
 @Constraint(validatedBy = {})
+@Documented
 public @interface Size {
 
     int min() default 0;
