@@ -7,6 +7,7 @@
         <!--<class>com.pearl.tracker.Member</class>
          -->
         <class>com.pearl.tracker.model.Product</class>
+        <class>com.pearl.tracker.model.Member</class>
         <!--<provider>org.eclipse.persistence.</provider>-->
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
@@ -27,7 +28,7 @@
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tracker"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value=""/>
-            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
             <property name="eclipselink.ddl-generation.output-mode" value="database"/>
         </properties>
     </persistence-unit>

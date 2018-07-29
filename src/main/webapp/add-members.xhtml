@@ -6,39 +6,51 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-<f:loadBundle basename="application" var="msg"/>
+<!--<f:loadBundle basename="application" var="msg"/>-->
 
 <h:head>
-    <title><h:outputText value="#{msg.welcomeTitle}"/></title>
+   <!-- <title><h:outputText value="#{msg.welcomeTitle}"/></title>-->
     <h:outputStylesheet library="tracker" name="css/default.css"/>
 </h:head>
 
 <h:body class="color">
-   <!-- <h3><h:outputText value="#{msg.welcomeHeading}"/></h3>
-    <p><h:outputText value="#{msg.welcomeMessage}"/></p>-->
+    <!-- <h3><h:outputText value="#{msg.welcomeHeading}"/></h3>
+     <p><h:outputText value="#{msg.welcomeMessage}"/></p>-->
 
-    <h:form>
-        <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+   <!-- <div align="center">-->
+        <h:form>
+            <p:panel id="panel" header="Form" style="margin-bottom:10px;">
 
-            <p:messages id="messages"/>
-            <h:panelGrid columns="2" cellpadding="5">
-                <h:outputLabel for="id" value="Member Id:"/>
-                <p:inputText id="id" value="#{member.memberId}" required="true"/>
+                <p:messages id="messages"/>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="id" value="Member Id:"/>
+                    <p:inputText id="id" value="#{memberController.member.id}" required="true"/>
 
-                <h:outputLabel for="name" value="Member name"/>
-                <p:inputText id="name" value="#{member.memberName}" required="true"/>
+                    <h:outputLabel for="name" value="Member name"/>
+                    <p:inputText id="name" value="#{memberController.member.name}" required="true"/>
 
-                <h:outputLabel for="address" value="Member address:"/>
-                <p:inputText id="address" value="#{member.memberAddress}" required="true"/>
+                    <h:outputLabel for="mobile" value="Member Mobile:"/>
+                    <p:inputText id="mobile" value="#{memberController.member.mobile}" required="true"/>
 
-                <h:outputLabel for="mobile" value="Member Mobile:"/>
-                <p:inputText id="mobile" value="#{member.memberMobile}" required="true"/>
+                    <h:outputLabel  for="dob" value="Member DOB:"/>
+                    <!--<p:inputText id="mobile" value="#{memberController.member.dob}" required="true"/>-->
+                    <p:calendar id="dob" value="#{memberController.member.dob}" pattern="yyyy-MM-dd" mask="true" />
+
+                    <h:outputLabel for="gender" value="Member Mobile:"/>
+                    <p:inputSwitch id="gender" value="#{memberController.member.gender}">
+                      <!--  <p:ajax listener="#{member.addMessage}" update="msg" />-->
+                    </p:inputSwitch>
+
+                    <h:outputLabel value="Member address:"/>
+                    <p:inputTextarea rows="10" cols="50" value="#{memberController.member.address}" queryDelay="750" minQueryLength="4" />
 
 
-            </h:panelGrid>
-            <p:commandButton value="Submit" update="panel" actionListener="#{member.addMember()}"/>
-        </p:panel>
 
-    </h:form>
+                </h:panelGrid>
+                <p:commandButton value="Submit" update="panel" actionListener="#{memberController.addMember}"/>
+            </p:panel>
+
+        </h:form>
+<!--    </div>-->
 </h:body>
 </html>

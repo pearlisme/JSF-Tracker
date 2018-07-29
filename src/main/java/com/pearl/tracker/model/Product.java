@@ -2,6 +2,9 @@ package com.pearl.tracker.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 import lombok.Data;
@@ -27,7 +30,7 @@ import javax.validation.constraints.Size;
 public class Product implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "products_seq")
     @NotNull
     @Column(name = "SKU_ID")
     private long skuId;
@@ -48,7 +51,7 @@ public class Product implements Serializable {
 
     @Column(name = "MODIFIED_DATE")
     @Temporal(TemporalType.DATE)
-    private Date modifiedDate;
+    private Date modifiedDate = new Date();
 
     public Product() {
     }

@@ -32,13 +32,9 @@
                 <p:inputText id="description" value="#{productController.product.description}" required="true">
                    <!-- <f:validateRegex pattern="[a-b]{5}" for="description" />-->
                 </p:inputText>
-
-               <!-- <p:outputLabel for="button" value="Button:" />
-                <p:barcode id="button" value="#{productController}" showOn="button" />-->
-
-                <h:outputLabel for="price" value="price"/>
+                    <h:outputLabel for="price" value="price"/>
                 <p:inputText id="price" value="#{productController.product.price}" required="true">
-                    <f:validateDoubleRange  minimum="1.0" maximum="99999.0" />
+                    <f:validateDoubleRange  minimum="1.0" maximum="9999.99" />
                 </p:inputText>
 
                 <h:outputLabel for="imageName" value="imageName:"/>

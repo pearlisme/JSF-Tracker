@@ -9,7 +9,7 @@
 <f:loadBundle basename="application" var="msg"/>
 
 <h:head>
-    <title><h:outputText value="#{msg.welcomeTitle}"/></title>
+    <!--<title><h:outputText value="#{msg.welcomeTitle}"/></title>-->
     <h:outputStylesheet library="tracker" name="css/default.css"/>
 </h:head>
 
@@ -25,7 +25,7 @@
             <h:outputText id="outputText" value="#{productController.product.name}"/>
 -->
             <p:panelGrid>
-                <p:commandButton value="ADD MEMBERS" action="add_members.xhtml"/>
+                <p:commandButton value="ADD MEMBERS" action="add-members.xhtml"/>
                 <p:commandButton value="ADD PRODUCTS" action="add-products.xhtml"/>
             </p:panelGrid>
 

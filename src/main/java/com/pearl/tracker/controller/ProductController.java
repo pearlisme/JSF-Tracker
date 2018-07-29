@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -18,10 +19,10 @@ import java.util.List;
 public class ProductController implements Serializable {
 
     @Inject
-    ProductService productService;
+    private ProductService productService;
 
-    private Product product;
-    private List<Product> productList = null;
+    private Product product = new Product();
+    private List<Product> productList =  new ArrayList<Product>();
 
     public String addProduct() {
 
@@ -32,9 +33,17 @@ public class ProductController implements Serializable {
         return "success";
     }
 
-    @PostConstruct
+/*    @PostConstruct
     public void init() {
         product = new Product();
+        productList = populateProducts();
+
+
+    }*/
+
+    private List<Product> populateProducts() {
+
+        return productService.getProducts();
     }
 
     public Product getProduct() {
@@ -50,6 +59,7 @@ public class ProductController implements Serializable {
     }
 
     public void setProductList(List<Product> productList) {
-        this.productList = productService.getProducts();
+
+        this.productList = productList;
     }
 }

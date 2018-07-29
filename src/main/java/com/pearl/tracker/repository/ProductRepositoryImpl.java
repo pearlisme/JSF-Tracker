@@ -10,6 +10,7 @@ import javax.inject.Named;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named(value = "productRepository")
@@ -29,17 +30,18 @@ public class ProductRepositoryImpl implements ProductRepository, Serializable {
     EntityManagerFactory emf;
     EntityManager em;
 
-    List<Product> productList = null;
+    List<Product> productList = new ArrayList<Product>();
 
 
-    @PostConstruct
+   /* @PostConstruct
     public void init(){
 
         TypedQuery<Product> q = em.createQuery(query,Product.class);
 
         emf.addNamedQuery("product.findbyProductNameD",q);
-    }
+    }*/
 
+//   @PostConstruct
     public EntityManager createEM() {
 
         emf = Persistence.createEntityManagerFactory("myH2PU");
@@ -50,26 +52,30 @@ public class ProductRepositoryImpl implements ProductRepository, Serializable {
     @Override
     public String addProduct(Product product) {
 
-        /*createEM();
+        createEM();
 
         if (!em.getTransaction().isActive()) {
             em.getTransaction().begin();
         }
-        em.persist(product);
+
+        try {
+            em.persist(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         em.getTransaction().commit();
         em.close();
         emf.close();
-        System.out.println("Success full Persist");*/
+        System.out.println("Success full Persist");
 
 
-        productList.add(product);
         return "success";
     }
 
     public List<Product> getProducts() {
 
-        /*List<Product> products = null;
+        List<Product> products = new ArrayList<>();
         createEM();
 
         if (!em.getTransaction().isActive()) {
@@ -82,14 +88,13 @@ public class ProductRepositoryImpl implements ProductRepository, Serializable {
 
             products = query.getResultList();
             em.getTransaction().commit();
-//            return products;
+            return products;
         } catch (NullPointerException e) {
             em.getTransaction().rollback();
         } finally {
             em.close();
             emf.close();
         }
-*/
         return productList;
     }
 
